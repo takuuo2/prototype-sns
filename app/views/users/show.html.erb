@@ -1,11 +1,14 @@
-<%= render 'books/list',book: @book ,user: @user%>
+<%= render 'books/list',book: @book %>
 <!-- ユーザーの投稿一覧 -->
 
 <% @books.each do |book| %>
 <div>
   <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
-  <p>ショップ名：<%= book.title %></p>
-  <p>説明：<%= book.opinion %></p>
+  <p>Title：<%= book.title %></p>
+  <p>Opinion：<%= book.opinion %></p>
   <p>ユーザーネーム：<%= book.user.name %></p>
+  <% if book.user == current_user %>
+    <p><%= link_to "削除", book_path(book), method: :delete %></p>
+  <% end %>
 </div>
 <% end %>
