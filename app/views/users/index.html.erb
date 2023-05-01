@@ -1,0 +1,12 @@
+<%= render 'books/list',book: @book,user: @user  %>
+<h1>Users</h1>
+<h3>image</h3>
+<h3>name</h3>
+<% @users.each do |users| %>
+<div>
+  <p>投稿ユーザー画像：<%= image_tag users.get_profile_image(100,100) %></p>
+  <p>ユーザーネーム：<%= users.name %></p>
+  <%= link_to 'Show',user_path(users.id) %>
+</div>
+
+<% end %>
