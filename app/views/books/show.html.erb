@@ -1,4 +1,8 @@
-<%= render 'list',book: @book,user: @user %>
+<div>
+  <%= flash[:notice] %>
+</div>
+
+<%= render 'list',book: Book.new,user: @user %>
 
 <div>
   <p>Title：<%= @book.title %></p>
@@ -7,7 +11,7 @@
   <p>ユーザーネーム：<%= link_to @book.user.name, user_path(@book.user_id) %></p>
   <p>投稿日：<%= @book.created_at.strftime('%Y/%m/%d') %></p>
   <% if @book.user == current_user %>
-    <p><%= link_to "Edit", book_path(@book)%></p>
-    <p><%= link_to "Destroy", books_path(@book), method: :delete %></p>
+    <p><%= link_to "Edit", edit_book_path(@book)%></p>
+    <p><%= link_to "Destroy", book_path(@book), method: :delete %></p>
   <% end %>
 </div>
