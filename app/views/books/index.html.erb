@@ -11,7 +11,7 @@
 <div>
   <p>投稿ユーザー画像：<%= image_tag books.user.get_profile_image(100,100) %></p>
   <p>Title：<%= link_to books.title, book_path(books) %></p>
-  <p>Opinion：<%= books.opinion %></p>
+  <p>Opinion：<%= books.body %></p>
   <p>ユーザーネーム：<%= books.user.name %></p>
 </div>
 

@@ -10,7 +10,7 @@
 <div>
   <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
   <%= link_to book.title, book_path(book)%>
-  <p>Opinion：<%= book.opinion %></p>
+  <p>Opinion：<%= book.body %></p>
   <p>ユーザーネーム：<%= book.user.name %></p>
 </div>
 <% end %>
