@@ -6,13 +6,35 @@
     <% end %>
   </ul>
 <% end %>
-<%= render 'list',book: @book,user: @user  %>
-<% @books.each do |books| %>
-<div>
-  <p>投稿ユーザー画像：<%= image_tag books.user.get_profile_image(100,100) %></p>
-  <p>Title：<%= link_to books.title, book_path(books) %></p>
-  <p>Opinion：<%= books.body %></p>
-  <p>ユーザーネーム：<%= books.user.name %></p>
+<div class="row">
+  <div class="col-3">
+    <%= render 'list',book: @book,user: @user  %>
+  </div>
+  <div class="col">
+    <h1>Books</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Title</th>
+          <th scope="col">Opinion</th>
+        </tr>
+        <tbody>
+          <% @books.each do |books| %>
+          <tr>
+            <td><%= image_tag books.user.get_profile_image(100,100) %></td>
+            <td><%= link_to books.title, book_path(books) %></td>
+            <td><%= books.body %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </thead>
+    </table>
+    <p class="center">CopyRight Infratop.inc</p>
+  </div>
 </div>
-
-<% end %>
+<style>
+  .center{
+        margin:50px 0 0 50px;
+    }
+</style>

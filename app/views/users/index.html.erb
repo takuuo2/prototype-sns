@@ -1,12 +1,32 @@
-<%= render 'books/list',book: @book,user: @user  %>
-<h1>Users</h1>
-<h3>image</h3>
-<h3>name</h3>
-<% @users.each do |users| %>
-<div>
-  <p>投稿ユーザー画像：<%= image_tag users.get_profile_image(100,100) %></p>
-  <p>ユーザーネーム：<%= users.name %></p>
-  <%= link_to 'Show',user_path(users.id) %>
+<div class="row">
+  <div class="col-3">
+    <%= render 'books/list',book: @book,user: @user  %>
+  </div>
+  <div class="col">
+    <h1>Users</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">image</th>
+          <th scope="col">name</th>
+          <th scope="col"></th>
+        </tr>
+        <tbody>
+          <% @users.each do |users| %>
+          <tr>
+            <td><%= image_tag users.get_profile_image(100,100) %></td>
+            <td><%= users.name %></td>
+            <td><%= link_to 'Show',user_path(users.id) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </thead>
+    </table>
+    <p class="center">CopyRight Infratop.inc</p>
+  </div>
 </div>
-
-<% end %>
+<style>
+  .center{
+        margin:50px 0 0 50px;
+    }
+</style>

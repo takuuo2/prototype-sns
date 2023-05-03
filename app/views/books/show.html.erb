@@ -2,16 +2,42 @@
   <%= flash[:notice] %>
 </div>
 
-<%= render 'list',book: Book.new,user: @user %>
-
-<div>
-  <p>Title：<%= @book.title %></p>
-  <p>Opinion：<%= @book.body %></p>
-  <p>投稿ユーザー画像：<%= image_tag @book.user.get_profile_image(100,100) %></p>
-  <p>ユーザーネーム：<%= link_to @book.user.name, user_path(@book.user_id) %></p>
-  <p>投稿日：<%= @book.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @book.user == current_user %>
-    <p><%= link_to "Edit", edit_book_path(@book)%></p>
-    <p><%= link_to "Destroy", book_path(@book), method: :delete %></p>
-  <% end %>
+<div class="row">
+  <div class="col-3">
+    <%= render 'list',book: @book,user: @user  %>
+  </div>
+  <div class="col">
+    <h1>Book detail</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+        <tbody>
+          <tr>
+            <td>
+              <%= image_tag @book.user.get_profile_image(100,100) %><br>
+              <%= link_to @book.user.name,user_path(@book.user.id) %>
+            </td>
+            <td><%= link_to @book.title, book_path(@book) %></td>
+            <td><%= @book.body %></td>
+            <% if @book.user == current_user %>
+              <td><%= link_to "Edit", edit_book_path(@book),class: 'btn btn-success' %></td>
+              <td><%= link_to "Destroy", book_path(@book), method: :delete ,class: 'btn btn-danger'%></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </thead>
+    </table>
+    <p class="center">CopyRight Infratop.inc</p>
+  </div>
 </div>
+<style>
+  .center{
+        margin:500px 0 0 50px;
+    }
+</style>
