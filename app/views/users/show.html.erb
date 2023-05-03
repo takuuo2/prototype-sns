@@ -1,16 +1,23 @@
 <div>
   <%= flash[:notice] %>
 </div>
-<%= render 'books/list',book: @book,user: @user %>
-<!-- ユーザーの投稿一覧 -->
-<h1>Books</h1>
-<h3>Title</h3>
-<h3>Opinion</h3>
-<% @books.each do |book| %>
-<div>
-  <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
-  <%= link_to book.title, book_path(book)%>
-  <p>Opinion：<%= book.body %></p>
-  <p>ユーザーネーム：<%= book.user.name %></p>
+<div class="row">
+  <div class="col-3">
+    <%= render 'books/list',book: @book,user: @user %>
+  </div>
+  <div class="col">
+    <!-- ユーザーの投稿一覧 -->
+    <h1>Books</h1>
+    <h3>Title</h3>
+    <h3>Opinion</h3>
+    <% @books.each do |book| %>
+    <div>
+      <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
+      <%= link_to book.title, book_path(book)%>
+      <p>Opinion：<%= book.body %></p>
+      <p>ユーザーネーム：<%= book.user.name %></p>
+    </div>
+    <% end %>
+  </div>
 </div>
-<% end %>
+

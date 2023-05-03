@@ -1,21 +1,29 @@
-<!-- ユーザーの詳細 -->
-<div>
-  <h1>User info</h1>
-  <%= image_tag user.get_profile_image(100,100) %>
-  <h3>name <%= user.name %></h3>
-  <h3>introduction <%= user.introduction %></h3>
+<div class = "pl-5 sidebar_content">
+  <h2>User info</h2>
+  <nav class="border-bottom border-secondary">
+    <%= image_tag user.get_profile_image(100,100) %>
+  </nav>
+  <nav class="border-bottom border-secondary">
+    <p class='font-weight-bold'>name　　　　　<%= user.name %></p>
+  </nav>
+  <p class='font-weight-bold'>introduction　　<%= user.introduction %></p>
 
   <% if user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_user_path(user) %></p>
+    <%= link_to edit_user_path(user), class: 'btn btn-outline-secondary btn-block' do %>
+      <i class="fas fa-user-cog" style="color: #74777b;"></i>
+    <% end %>
+  <% end %>
+
+  <h2>New Book</h2>
+  <%= form_with model: book do |f| %>
+    <p>Title</p>
+      <%= f.text_field :title %>
+    <p>Opinion</p>
+      <%= f.text_area :body%>
+    <%= f.submit 'Create Book' ,class: 'btn btn-success' %>
   <% end %>
 </div>
 
-<h1>投稿フォーム</h1>
-  <%= form_with model: book do |f| %>
-    <h4>title</h4>
-      <%= f.text_field :title %>
-    <h4>opinion</h4>
-      <%= f.text_area :body%>
-    <%= f.submit '投稿' %>
-  <% end %>
+
+
 
