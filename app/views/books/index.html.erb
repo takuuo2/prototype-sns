@@ -6,31 +6,36 @@
     <% end %>
   </ul>
 <% end %>
-<div class="row">
-  <div class="col-3">
-    <%= render 'list',book: @book,user: @user  %>
-  </div>
-  <div class="col">
-    <h1>Books</h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col">Title</th>
-          <th scope="col">Opinion</th>
-        </tr>
-        <tbody>
-          <% @books.each do |books| %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'list',book: @book,user: @user  %>
+    </div>
+    <div class="offset-md-1 col-md-8">
+      <h1>Books</h1>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= image_tag books.user.get_profile_image(100,100) %></td>
-            <td><%= link_to books.title, book_path(books) %></td>
-            <td><%= books.body %></td>
+            <th scope="col"></th>
+            <th scope="col">Title</th>
+            <th scope="col">Opinion</th>
           </tr>
-          <% end %>
-        </tbody>
-      </thead>
-    </table>
-    <p class="center">CopyRight Infratop.inc</p>
+          <tbody>
+            <% @books.each do |books| %>
+            <tr>
+              <td>
+                <%= link_to user_path(books.user.id) do %>
+                  <%= image_tag books.user.get_profile_image(100,100) %></td>
+                <% end %>
+              <td><%= link_to books.title, book_path(books) %></td>
+              <td><%= books.body %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </thead>
+      </table>
+      <p class="center">CopyRight Infratop.inc</p>
+    </div>
   </div>
 </div>
 <style>

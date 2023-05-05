@@ -1,28 +1,30 @@
-<div class="row">
-  <div class="col-3">
-    <%= render 'books/list',book: @book,user: @user  %>
-  </div>
-  <div class="col">
-    <h1>Users</h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">image</th>
-          <th scope="col">name</th>
-          <th scope="col"></th>
-        </tr>
-        <tbody>
-          <% @users.each do |users| %>
+<div class="container">
+ <div class="row">
+    <div class="col-md-3">
+      <%= render 'books/list',book: @book,user: @user  %>
+    </div>
+    <div class="offset-md-1 col-md-8">
+      <h1>Users</h1>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= image_tag users.get_profile_image(100,100) %></td>
-            <td><%= users.name %></td>
-            <td><%= link_to 'Show',user_path(users.id) %></td>
+            <th scope="col">image</th>
+            <th scope="col">name</th>
+            <th scope="col"></th>
           </tr>
-          <% end %>
-        </tbody>
-      </thead>
-    </table>
-    <p class="center">CopyRight Infratop.inc</p>
+          <tbody>
+            <% @users.each do |users| %>
+            <tr>
+              <td><%= image_tag users.get_profile_image(100,100) %></td>
+              <td><%= users.name %></td>
+              <td><%= link_to 'Show',user_path(users.id) %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </thead>
+      </table>
+      <p class="center">CopyRight Infratop.inc</p>
+    </div>
   </div>
 </div>
 <style>

@@ -1,39 +1,42 @@
 <div>
   <%= flash[:notice] %>
 </div>
-
-<div class="row">
-  <div class="col-3">
-    <%= render 'list',book: Book.new,user: @user  %>
-  </div>
-  <div class="col">
-    <h1>Book detail</h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
-        <tbody>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'list',book: Book.new,user: @user  %>
+    </div>
+    <div class="offset-md-1 col-md-8">
+      <h1>Book detail</h1>
+      <table class="table">
+        <thead>
           <tr>
-            <td>
-              <%= image_tag @book.user.get_profile_image(100,100) %><br>
-              <%= link_to @book.user.name,user_path(@book.user.id) %>
-            </td>
-            <td><%= link_to @book.title, book_path(@book) %></td>
-            <td><%= @book.body %></td>
-            <% if @book.user == current_user %>
-              <td><%= link_to "Edit", edit_book_path(@book),class: 'btn btn-success' %></td>
-              <td><%= link_to "Destroy", book_path(@book), method: :delete ,class: 'btn btn-danger'%></td>
-            <% end %>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
           </tr>
-        </tbody>
-      </thead>
-    </table>
-    <p class="center">CopyRight Infratop.inc</p>
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to user_path(@book.user.id) do %>
+                  <%= image_tag @book.user.get_profile_image(100,100) %><br>
+                  <%= @book.user.name %>
+                <% end %>
+              </td>
+              <td><%= link_to @book.title, book_path(@book) %></td>
+              <td><%= @book.body %></td>
+              <% if @book.user == current_user %>
+                <td><%= link_to "Edit", edit_book_path(@book),class: 'btn btn-success' %></td>
+                <td><%= link_to "Destroy", book_path(@book), method: :delete ,class: 'btn btn-danger'%></td>
+              <% end %>
+            </tr>
+          </tbody>
+        </thead>
+      </table>
+      <p class="center">CopyRight Infratop.inc</p>
+    </div>
   </div>
 </div>
 <style>
